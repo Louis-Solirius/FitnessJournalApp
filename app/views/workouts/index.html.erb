@@ -2,8 +2,8 @@
 
 <% @workouts.each do |workout| %>
     <div>
-        <h2><%= workout.title %></h2>
-        <%= workout.date %>
+        <h2><%= link_to workout.title, workout_path(workout.id) %></h2>
+        <h3><%= workout.date %></h3>
         <%= workout.notes %>
     </div>
 <% end %>
