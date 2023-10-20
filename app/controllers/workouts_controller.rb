@@ -1,12 +1,12 @@
 class WorkoutsController < ApplicationController
+
+    before_action :set_workout, except: [:index, :new, :create]
+
     def index
         @workouts = Workout.all
     end
 
     def show
-        @workout = Workout.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-        redirect_to root_path
     end
 
     def new
@@ -22,9 +22,31 @@ class WorkoutsController < ApplicationController
         end
     end
 
+    def edit
+    end
+
+    def update
+        if @workout.update(workout_params)
+            redirect_to @workout
+        else
+            render :edit, status: :unprocessable_entity
+        end
+    end
+
+    def destroy
+        @workout.destroy
+        redirect_to root_path
+    end
+
     private
 
     def workout_params
         params.require(:workout).permit(:date, :notes, :title) 
+    end
+
+    def set_workout
+        @workout = Workout.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+        redirect_to root_path
     end
 end
