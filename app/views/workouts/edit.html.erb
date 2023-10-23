@@ -1,4 +1,6 @@
 <h1>Edit Workout</h1>
 
 <%= render partial: "form", locals: {workout: @workout} %>
-<%= button_to "Delete", @workout, method: :delete, data: {turbo_confirm: "Are you sure you want to delete this workout?"} %>
+<%= button_to "Delete", @workout, method: :delete, data: {turbo_confirm: "Are you sure you want to delete this workout?"}, class:"btn btn-outline-danger"%>
+<br/>
+<%= link_to 'Back', :back, class:"btn btn-secondary" %>
