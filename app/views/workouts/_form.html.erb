@@ -1,28 +1,31 @@
-<%= form_with model: workout do |form| %>
-
-    <% if form.object.errors.any? %>
-        <div>
-            <% form.object.errors.full_messages.each do |message| %>
-                <div><%= message %></div>
-            <% end %>
-        </div>
+<%= form_for(@workout) do |f| %>
+    <% if @workout.errors.any? %>
+    <div id="errorExplanation">
+      <h2><%= pluralize(@workout.errors.count, "error") %> prohibited
+          this workout from being saved:</h2>
+      <ul>
+      <% @workout.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
     <% end %>
-
-    <div>
-        <%= form.label :title %>
-        <%= form.text_field :title %>
+   
+    <div class="field form-group m-3">
+      <%= f.text_field :title, class: "form-control", placeholder:"Title" %>
     </div>
 
-    <div>
-        <%= form.label :date %>
-        <%= form.date_select :date %>
+    <div class="field form-group m-3">
+      <%= f.label :date %><br />
+      <%= f.date_select :date, class: "form-control" %>
     </div>
 
-    <div>
-        <%= form.label :notes %>
-        <%= form.text_area :notes %>
+    <div class="field form-group m-3">
+      <%= f.text_area :notes, class: "form-control", placeholder:"Notes" %>
     </div>
-
-    <%= form.button class:"btn btn-outline-warning" %>
-
-<% end %>
+    
+    
+    <div class="actions m-3">
+      <%= f.submit class:"btn btn-outline-warning" %>
+    </div>
+  <% end %>

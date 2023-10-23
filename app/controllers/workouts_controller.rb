@@ -17,7 +17,8 @@ class WorkoutsController < ApplicationController
     def create
         @workout = Workout.new(workout_params)
         if @workout.save
-            redirect_to @workout
+            redirect_to(@workout, :notice => 'New workout created')
+            #redirect_to @workout
         else
             render :new, status: :unprocessable_entity 
         end
@@ -28,7 +29,7 @@ class WorkoutsController < ApplicationController
 
     def update
         if @workout.update(workout_params)
-            redirect_to @workout
+            redirect_to(@workout, :notice => 'Workout updated')
         else
             render :edit, status: :unprocessable_entity
         end
