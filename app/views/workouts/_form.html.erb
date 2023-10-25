@@ -23,6 +23,10 @@
     <div class="field form-group m-3">
       <%= f.text_area :notes, class: "form-control", placeholder:"Notes" %>
     </div>
+
+    <div class="field form-group m-3">
+      <%= f.number_field :user_id, id: :workout_user_id, class: "form-control", value:current_user.id, type: :hidden %>
+    </div>
     
     
     <div class="actions m-3">

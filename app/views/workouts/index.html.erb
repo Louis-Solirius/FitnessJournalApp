@@ -27,15 +27,17 @@
 
         <tbody>
             <% @workouts.each do |workout| %>
-                <tr>
-                    <td><%= link_to workout.title, workout_path(workout.id) %></td>
-                    <td><%= workout.date %></td>
-                    <td><%= workout.notes %></td>
-            
-                    <td><%= link_to 'Edit Workout', edit_workout_path(workout), class:"btn btn-dark" %></td>
-            
-                    <br/>
-                </tr>
+                <% if workout.user == current_user %>
+                  <tr>
+                      <td><%= link_to workout.title, workout_path(workout.id) %></td>
+                      <td><%= workout.date %></td>
+                      <td><%= workout.notes %></td>
+              
+                      <td><%= link_to 'Edit Workout', edit_workout_path(workout), class:"btn btn-dark" %></td>
+              
+                      <br/>
+                  </tr>
+                <% end %>
             <% end %>
         </tbody>
 
