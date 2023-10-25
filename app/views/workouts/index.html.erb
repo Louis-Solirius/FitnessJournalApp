@@ -1,50 +1,59 @@
-<div class="card">
-  <div class="card-header">
-    <h3>Workouts</h3>
+<% if user_signed_in? %>
+
+  <div class="card">
+    <div class="card-header">
+      <h3>Workouts</h3>
+    </div>
+    <div class="card-body">
+      <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search Workout" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
   </div>
-  <div class="card-body">
-    <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search Workout" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-    </form>
+
+  <br/>
+
+  <div class="card">
+    <div class="card-body">
+      <table class="table table-striped table-borderless table-hover">
+          <thead class="table-dark">
+              <tr>
+
+                  <th>Workout</th>
+                  <th>Date</th>
+                  <th>Notes</th>
+
+              </tr>
+          </thead>
+
+          <tbody>
+              <% @workouts.each do |workout| %>
+                  <% if workout.user == current_user %>
+                    <tr>
+                        <td><%= link_to workout.title, workout_path(workout.id), class:"link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" %></td>
+                        <td><%= workout.date %></td>
+                        <td><%= workout.notes %></td>
+                
+                        <td><%= link_to 'Edit Workout', edit_workout_path(workout), class:"btn btn-outline-warning btn-sm" %></td>
+
+                        <br/>
+                    </tr>
+                  <% end %>
+              <% end %>
+          </tbody>
+
+      </table
+    </div>
   </div>
-</div>
 
-<br/>
+<% else %>
 
-<div class="card">
-  <div class="card-body">
-    <table class="table table-striped table-borderless table-hover">
-        <thead class="table-dark">
-            <tr>
+  <h1>Home</h1>
 
-                <th>Workout</th>
-                <th>Date</th>
-                <th>Notes</th>
+  <img src="logo.jpeg" />
 
-            </tr>
-        </thead>
-
-        <tbody>
-            <% @workouts.each do |workout| %>
-                <% if workout.user == current_user %>
-                  <tr>
-                      <td><%= link_to workout.title, workout_path(workout.id) %></td>
-                      <td><%= workout.date %></td>
-                      <td><%= workout.notes %></td>
-              
-                      <td><%= link_to 'Edit Workout', edit_workout_path(workout), class:"btn btn-dark" %></td>
-              
-                      <br/>
-                  </tr>
-                <% end %>
-            <% end %>
-        </tbody>
-
-    </table
-  </div>
-</div>
-
+<% end %>
 
 
 
