@@ -13,7 +13,6 @@ Rails.application.routes.draw do
   resources :workouts
 
   # Defines the root path route ("/")
-  #root "home#index"
-  root "workouts#index"
+  root "home#index"
   
 end 
