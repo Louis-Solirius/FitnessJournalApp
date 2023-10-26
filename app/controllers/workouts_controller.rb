@@ -6,6 +6,7 @@ class WorkoutsController < ApplicationController
 
     def index
         @workouts = Workout.all
+        ActiveRecord::Base.connection.tables
     end
 
     def show
