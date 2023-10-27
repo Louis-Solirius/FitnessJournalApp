@@ -6,15 +6,16 @@ class WorkoutsController < ApplicationController
 
     def index
         @workouts = Workout.all
-        ActiveRecord::Base.connection.tables
     end
 
     def show
+        @workout = current_user.workouts.find(params[:id])
     end
 
     def new
         #@workout = Workout.new
         @workout = current_user.workouts.build
+        @workout.exercises.build
     end
 
     def create
@@ -52,7 +53,7 @@ class WorkoutsController < ApplicationController
     private
 
     def workout_params
-        params.require(:workout).permit(:date, :notes, :title, :user_id) 
+        params.require(:workout).permit(:date, :notes, :title, :user_id, exercises_attributes: [:id, :name, :sets, :reps, :rpe, :weight, :_destory]) 
     end
 
     def set_workout
@@ -61,3 +62,5 @@ class WorkoutsController < ApplicationController
         redirect_to root_path
     end
 end
+
+# rails g scaffold exercise name:string sets:integer reps:integer rpe:integer weight:integer workout:belongs_to

@@ -1,10 +1,10 @@
-<%= form_for(@workout) do |f| %>
+<%= form_with(model: workout, data: {controller: "nested-form", nested_form_wrapper_selector_value: '.nested-form-wrapper'}) do |form| %>
     <% if @workout.errors.any? %>
     <div id="errorExplanation">
-      <h2><%= pluralize(@workout.errors.count, "error") %> prohibited
+      <h2><%= pluralize(workout.errors.count, "error") %> prohibited
           this workout from being saved:</h2>
       <ul>
-      <% @workout.errors.full_messages.each do |msg| %>
+      <% workout.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
@@ -12,24 +12,36 @@
     <% end %>
    
     <div class="field form-group m-3">
-      <%= f.text_field :title, class: "form-control", placeholder:"Title" %>
+      <%= form.text_field :title, class: "form-control", placeholder:"Title" %>
     </div>
 
     <div class="field form-group m-3">
-      <%= f.label :date %><br />
-      <%= f.date_select :date, class: "form-control" %>
+      <%= form.label :date %><br />
+      <%= form.date_select :date, class: "form-control" %>
     </div>
 
     <div class="field form-group m-3">
-      <%= f.text_area :notes, class: "form-control", placeholder:"Notes" %>
+      <%= form.text_area :notes, class: "form-control", placeholder:"Notes" %>
     </div>
 
     <div class="field form-group m-3">
-      <%= f.number_field :user_id, id: :workout_user_id, class: "form-control", value:current_user.id, type: :hidden %>
+      <%= form.number_field :user_id, id: :workout_user_id, class: "form-control", value:current_user.id, type: :hidden %>
     </div>
     
-    
+    <template data-nested-form-target="template">
+      <%= form.fields_for :exercises, Exercise.new, child_index: 'NEW_RECORD' do |exercise_fields| %>
+        <%= render "workouts/workout_exercise_form", f: exercise_fields %>
+      <% end %>
+    </template>
+
+    <%= form.fields_for :exercises do |exercise_fields| %>
+      <%= render "workouts/workout_exercise_form", f: exercise_fields %>
+    <% end %>
+
+    <div data-nested-form-target="target"></div>
+    <button type="button" data-action="nested-form#add">Add exercise</button>
+
     <div class="actions m-3">
-      <%= f.submit class:"btn btn-outline-warning" %>
+      <%= form.submit class:"btn btn-outline-warning" %>
     </div>
   <% end %>

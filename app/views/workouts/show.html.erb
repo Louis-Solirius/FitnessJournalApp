@@ -20,37 +20,17 @@
         </thead>
 
         <tbody>
-            <tr>
-                <td>Split Squats</td>
-                <td>3</td>
-                <td>10</td>
-                <td>8</td>
-                <td>18</td>
-            </tr>
-
-            <tr>
-                <td>Back Rows</td>
-                <td>3</td>
-                <td>8</td>
-                <td>8</td>
-                <td>60</td>
-            </tr>
-
-            <tr>
-                <td>Goblet Squats</td>
-                <td>4</td>
-                <td>12</td>
-                <td>9</td>
-                <td>34</td>
-            </tr>
-
-            <tr>
-                <td>Lat Pull Downs</td>
-                <td>3</td>
-                <td>8</td>
-                <td>7</td>
-                <td>55</td>
-            </tr>
+            <% @workout.exercises.each do |exercise| %>
+                <tr>
+                    <td><%= exercise.name %></td>
+                    <td><%= exercise.sets %></td>
+                    <td><%= exercise.reps %></td>
+                    <td><%= exercise.rpe %></td>
+                    <td><%= exercise.weight %></td>
+            
+                    <br/>
+                </tr>
+            <% end %>
         </tbody>
 
     </table
