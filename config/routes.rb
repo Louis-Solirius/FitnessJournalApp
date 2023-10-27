@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   resources :exercises
-  devise_for :users
+  devise_for :users, controllers: {
+    omniauth_callbacks: 'users/omniauth_callbacks',
+    sessions: 'users/sessions',
+    registrations: 'users/registrations'
+  }
 
   devise_scope :user do  
     get '/users/sign_out' => 'devise/sessions#destroy'     
@@ -14,6 +18,6 @@ Rails.application.routes.draw do
   resources :workouts
 
   # Defines the root path route ("/")
-  root "home#index"
+  root "workouts#index"
   
 end 
