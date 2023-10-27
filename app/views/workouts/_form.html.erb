@@ -28,18 +28,24 @@
       <%= form.number_field :user_id, id: :workout_user_id, class: "form-control", value:current_user.id, type: :hidden %>
     </div>
     
-    <template data-nested-form-target="template">
-      <%= form.fields_for :exercises, Exercise.new, child_index: 'NEW_RECORD' do |exercise_fields| %>
+    <div class="m-3">
+      <template data-nested-form-target="template">
+        <%= form.fields_for :exercises, Exercise.new, child_index: 'NEW_RECORD' do |exercise_fields| %>
+          <%= render "workouts/workout_exercise_form", f: exercise_fields %>
+        <% end %>
+      </template>
+    </div>
+
+
+    <div class="m-3">
+      <%= form.fields_for :exercises do |exercise_fields| %>
         <%= render "workouts/workout_exercise_form", f: exercise_fields %>
       <% end %>
-    </template>
+    </div>
 
-    <%= form.fields_for :exercises do |exercise_fields| %>
-      <%= render "workouts/workout_exercise_form", f: exercise_fields %>
-    <% end %>
 
-    <div data-nested-form-target="target"></div>
-    <button type="button" data-action="nested-form#add">Add exercise</button>
+    <div data-nested-form-target="target" class="m-3"></div>
+    <button type="button" data-action="nested-form#add" class="btn btn-outline-success btn-sm m-3">Add exercise</button>
 
     <div class="actions m-3">
       <%= form.submit class:"btn btn-outline-warning" %>

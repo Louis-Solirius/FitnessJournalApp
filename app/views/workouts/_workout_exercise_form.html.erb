@@ -1,20 +1,28 @@
 <div class="nested-form-wrapper" data-new-record="<%= f.object.new_record? %>">
-  <%= f.label :name %>
-  <%= f.text_field :name %>
 
-  <%= f.label :sets %>
-  <%= f.number_field :sets %>
 
-  <%= f.label :reps %>
-  <%= f.number_field :reps %>
+  <div class="card w-75 mb-3">
+    <div class="card-body field form-group">
+      <h5 class="card-title">New exercise</h5>
+      <% f.label :name %>
+      <%= f.text_field :name, class: "form-control m-1", placeholder:"Name" %>
+  
+      <% f.label :sets %>
+      <%= f.number_field :sets, class: "form-control m-1", placeholder:"Sets" %>
 
-  <%= f.label :rpe %>
-  <%= f.number_field :rpe %>
+      <% f.label :reps %>
+      <%= f.number_field :reps, class: "form-control m-1", placeholder:"Reps" %>
 
-  <%= f.label :weight %>
-  <%= f.number_field :weight %>
+      <% f.label :rpe %>
+      <%= f.number_field :rpe, class: "form-control m-1", placeholder:"RPE" %>
 
-  <button type="button" data-action="nested-form#remove">Remove exercise</button>
+      <% f.label :weight %>
+      <%= f.number_field :weight, class: "form-control m-1", placeholder:"Weight" %>
+
+      <button type="button" data-action="nested-form#remove" class="btn btn-outline-danger btn-sm m-1">Remove exercise</button>
+
+    </div>
+  </div>
 
   <%= f.hidden_field :_destroy %>
 </div>
