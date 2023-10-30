@@ -14,36 +14,31 @@
 
   <br/>
 
+
   <div class="card">
-    <div class="card-body">
-      <table class="table table-striped table-borderless table-hover">
-          <thead class="table-dark">
-              <tr>
-
-                  <th>Workout</th>
-                  <th>Date</th>
-                  <th>Notes</th>
-
-              </tr>
-          </thead>
-
-          <tbody>
-              <% @workouts.each do |workout| %>
-                  <% if workout.user == current_user %>
-                    <tr>
-                        <td><%= link_to workout.title, workout_path(workout.id) %></td>
-                        <td><%= workout.date %></td>
-                        <td><%= workout.notes %></td>
+    <div class="card-body text-center">
+      <div class="row">
+        <% @workouts.each do |workout| %>
+          <% if workout.user == current_user %>
+              <div class="col">
+                <div class="card" style="width: 18rem;">
+                  <img src="assets/logo.jpeg" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h4 class="card-title"><%= link_to workout.title, workout_path(workout.id) %></h4>
+                    <h6 class="card-title"><%= workout.date %></h6>
+                    <p class="card-text"><%= workout.notes %></p>
+                    <%= link_to 'Edit Workout', edit_workout_path(workout), class:"btn btn-secondary" %>
+                  </div>
+                </div>
                 
-                        <td><%= link_to 'Edit Workout', edit_workout_path(workout), class:"btn btn-dark" %></td>
-                
-                        <br/>
-                    </tr>
-                  <% end %>
-              <% end %>
-          </tbody>
+                <br/>
+      
+              </div>
+            <% end %>  
+          <% end %>
+          
+      </div>
 
-      </table
     </div>
   </div>
 
