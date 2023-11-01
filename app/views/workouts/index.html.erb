@@ -22,7 +22,13 @@
           <% if workout.user == current_user %>
               <div class="col">
                 <div class="card" style="width: 18rem;">
-                  <img src="assets/logo.jpeg" class="card-img-top" alt="...">
+
+                  <% if workout.image.attached? %>
+                    <%= image_tag(workout.image_as_thumbnail) %>
+                  <% else %>
+                    <img src="assets/logo.jpeg" class="card-img-top" alt="...">
+                  <% end %>
+                  
                   <div class="card-body">
                     <h4 class="card-title"><%= link_to workout.title, workout_path(workout.id) %></h4>
                     <h6 class="card-title"><%= workout.date %></h6>

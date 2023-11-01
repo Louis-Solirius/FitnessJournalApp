@@ -47,6 +47,13 @@
     <div data-nested-form-target="target" class="m-3"></div>
     <button type="button" data-action="nested-form#add" class="btn btn-outline-success btn-sm m-3">Add exercise</button>
 
+    <div class="field form-group m-3">
+      <%= form.label :image %>
+      <%= form.file_field :image, class: "form-control" %>
+    </div>
+
+    <hr/>
+
     <div class="actions m-3">
       <%= form.submit class:"btn btn-outline-warning" %>
     </div>
