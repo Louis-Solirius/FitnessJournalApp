@@ -12,6 +12,6 @@ class Workout < ApplicationRecord
     validates :title, presence: true
 
     def image_as_thumbnail
-        image.variant(resize_to_limit: [350, 364]).processed
+        image.variant(resize_to_limit: [1000, 1000]).processed
     end
 end

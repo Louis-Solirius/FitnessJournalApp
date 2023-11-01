@@ -24,11 +24,11 @@
                 <div class="card" style="width: 18rem;">
 
                   <% if workout.image.attached? %>
-                    <%= image_tag(workout.image_as_thumbnail) %>
+                    <%= link_to image_tag(workout.image_as_thumbnail, width: 280, height:300, class:"rounded mx-auto d-block"), workout_path(workout.id) %>
                   <% else %>
-                    <img src="assets/logo.jpeg" class="card-img-top" alt="...">
+                    <%= link_to image_tag('logo.jpeg', width: 280, height:300, class:"rounded mx-auto d-block"), workout_path(workout.id) %>
                   <% end %>
-                  
+
                   <div class="card-body">
                     <h4 class="card-title"><%= link_to workout.title, workout_path(workout.id) %></h4>
                     <h6 class="card-title"><%= workout.date %></h6>
