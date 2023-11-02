@@ -1,6 +1,6 @@
 class SearchController < ApplicationController
   def index
-    @query = Workout.ransack(params[:q])
-    @workouts = @query.result(distinct: true)
+    @query = current_user.workouts.ransack(params[:q])
+    @workouts = @query.result(distinct: false)
   end
 end
