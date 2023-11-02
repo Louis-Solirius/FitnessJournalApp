@@ -6,6 +6,7 @@ class WorkoutsController < ApplicationController
 
     def index
         @workouts = Workout.all
+        #@query = Workout.ransack(params[:q])
     end
 
     def show
