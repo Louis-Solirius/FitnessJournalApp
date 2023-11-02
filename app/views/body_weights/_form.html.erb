@@ -1,0 +1,28 @@
+<%= form_with(model: body_weight) do |form| %>
+  <% if body_weight.errors.any? %>
+    <div id="errorExplanation", style="color: red">
+      <h2><%= pluralize(body_weight.errors.count, "error") %> prohibited this body_weight from being saved:</h2>
+
+      <ul>
+        <% body_weight.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field form-group m-3">
+    <%= form.label :date %>
+    <%= form.date_field :date, class: "form-control", placeholder: Time.now %>
+  </div>
+
+  <div class="field form-group m-3">
+    <% form.label :weight%>
+    <%= form.number_field :weight, class:"form-control", placeholder:"Weight (kg)" %>
+  </div>
+
+  <div class="actions m-3">
+    <%= form.submit class:"btn btn-outline-success"%>
+  </div>
+  <hr/>
+<% end %>

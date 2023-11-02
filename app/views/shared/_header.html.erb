@@ -16,6 +16,10 @@
           <li class="nav-item">
             <%= link_to "New Workout", new_workout_url, class:"nav-link" %>
           </li>
+
+          <li class="nav-item">
+            <%= link_to "Body Weight Tracker", body_weights_url, class:"nav-link" %>
+          </li>
         
           <li class="nav-item">
             <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class:"nav-link" %>
@@ -37,6 +41,30 @@
         <% end %>
 
       </ul>
+
+      <div class="form-check form-switch mx-4">
+        <input 
+          class="form-check-input p-2"
+          type="checkbox"
+          role="switch"
+          id="flexSwitchCheckChecked"
+          checked
+          onclick="myFunction()"
+        />
+      </div>
+
+      <script>
+        function myFunction() {
+          var element = document.body;
+          element.dataset.bsTheme = 
+            element.dataset.bsTheme == "light" ? "dark" : "light";
+        }
+      </script>
+
+      <form action="https://github.com/Louis-Solirius/FitnessJournalApp/">
+        <input class="btn btn-outline-success" type="submit" value="View on Github" />
+      </form>
+      
     </div>
   </div>
 </nav> 

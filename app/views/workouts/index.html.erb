@@ -24,14 +24,14 @@
                 <div class="card" style="width: 18rem;">
 
                   <% if workout.image.attached? %>
-                    <%= link_to image_tag(workout.image_as_thumbnail, width: 280, height:300, class:"rounded mx-auto d-block"), workout_path(workout.id) %>
+                    <%= link_to image_tag(workout.image_as_thumbnail, width: 280, height:250, class:"rounded mx-auto d-block"), workout_path(workout.id) %>
                   <% else %>
-                    <%= link_to image_tag('logo.jpeg', width: 280, height:300, class:"rounded mx-auto d-block"), workout_path(workout.id) %>
+                    <%= link_to image_tag('logo.jpeg', width: 280, height:250, class:"rounded mx-auto d-block"), workout_path(workout.id) %>
                   <% end %>
 
                   <div class="card-body">
                     <h4 class="card-title"><%= link_to workout.title, workout_path(workout.id) %></h4>
-                    <h6 class="card-title"><%= workout.date %></h6>
+                    <h6 class="card-title"><%= workout.date.strftime('%a, %d %b %Y') %></h6>
                     <p class="card-text"><%= workout.notes %></p>
                     <%= link_to 'Edit Workout', edit_workout_path(workout), class:"btn btn-secondary" %>
                   </div>
@@ -53,14 +53,16 @@
 
   <%#= image_tag 'logo.jpeg' %>
 
+  <center>
+    <div class="d-grid gap-2 ">
+      <%= link_to "Sign Up", new_user_registration_path, class:"btn btn-secondary" %>
+
+      <%= link_to "Sign In", new_user_session_path, class:"btn btn-success" %>
+
+    </div>
+  </center>
 
 
-  <div class="d-grid gap-2 ">
-    <%= link_to "Sign Up", new_user_registration_path, class:"btn btn-secondary" %>
-
-    <%= link_to "Sign In", new_user_session_path, class:"btn btn-success" %>
-
-  </div>
 <% end %>
 
 

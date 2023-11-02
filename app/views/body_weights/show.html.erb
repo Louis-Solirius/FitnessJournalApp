@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @body_weight %>
+
+<div>
+  <%= link_to "Edit this body weight", edit_body_weight_path(@body_weight) %> |
+  <%= link_to "Back to body weights", body_weights_path %>
+
+  <%= button_to "Destroy this body weight", @body_weight, method: :delete %>
+</div>
