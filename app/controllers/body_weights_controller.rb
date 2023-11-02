@@ -68,6 +68,12 @@ class BodyWeightsController < ApplicationController
     redirect_to body_weights_path, notice: "Not Authorised to view or edit this body weight" if @body_weight.nil?
   end
 
+  def remove_all
+    current_user.body_weights.delete_all
+    flash[:notice] = "All Weights Deleted"
+    redirect_to body_weights_path
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_body_weight

@@ -23,6 +23,10 @@
 
   <div class="actions m-3">
     <%= form.submit class:"btn btn-outline-success"%>
+    
+    <%= link_to "Delete all weights", remove_all_body_weights_path, :method => :get, data: {turbo_confirm: "Are you sure you want to delete all weights?"}, class:"btn btn-danger" %>
   </div>
+
+  
   <hr/>
 <% end %>

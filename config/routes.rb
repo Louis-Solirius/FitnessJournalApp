@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   get 'search', to: "search#index"
-  resources :body_weights
+  resources :body_weights do
+    collection do
+      get 'remove_all'
+    end
+  end
+  
   resources :exercises
   devise_for :users, controllers: {
     omniauth_callbacks: 'users/omniauth_callbacks',
