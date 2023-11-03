@@ -42,6 +42,8 @@
 
       </ul>
 
+      <div>Dark Mode</div>
+
       <div class="form-check form-switch mx-4">
         <input 
           class="form-check-input p-2"
@@ -55,9 +57,12 @@
 
       <script>
         function myFunction() {
-          var element = document.body;
+          var element = document.documentElement;
           element.dataset.bsTheme = 
             element.dataset.bsTheme == "light" ? "dark" : "light";
+          console.log(element.dataset.bsTheme)
+          var checkBox = getElementById("flexSwitchCheckChecked")
+          element.dataset.bsTheme == "light" ? checkBox.unchecked : checkBox.checked
         }
       </script>
 
