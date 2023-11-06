@@ -42,7 +42,7 @@
 
       </ul>
 
-      <div>Dark Mode</div>
+      <div style="color: white;">Dark Mode</div>
 
       <div class="form-check form-switch mx-4">
         <input 
@@ -50,20 +50,32 @@
           type="checkbox"
           role="switch"
           id="flexSwitchCheckChecked"
-          checked
-          onclick="myFunction()"
+          onclick="toggleDarkMode()"
         />
       </div>
 
       <script>
-        function myFunction() {
+        function toggleDarkMode() {
           var element = document.documentElement;
-          element.dataset.bsTheme = 
-            element.dataset.bsTheme == "light" ? "dark" : "light";
-          console.log(element.dataset.bsTheme)
-          var checkBox = getElementById("flexSwitchCheckChecked")
-          element.dataset.bsTheme == "light" ? checkBox.unchecked : checkBox.checked
+          var isDarkMode = element.dataset.bsTheme === "dark";
+          element.dataset.bsTheme = isDarkMode ? "light" : "dark"
+
+          // Save the current theme to localStorage
+          localStorage.setItem('bsTheme', element.dataset.bsTheme);
+          // Update the state of the checkbox
+          document.getElementById('flexSwitchCheckChecked').checked = !isDarkMode;
         }
+
+        // This function sets the initial state of the dark mode when the page loads
+        function initializeDarkMode() {
+          var savedTheme = localStorage.getItem('bsTheme') || "dark";
+          document.documentElement.dataset.bsTheme = savedTheme;
+          // Set the checkbox state based on the saved theme
+          document.getElementById('flexSwitchCheckChecked').checked = savedTheme === "dark";
+        }
+
+        // Initialize dark mode on page load
+        initializeDarkMode();
       </script>
 
       <form action="https://github.com/Louis-Solirius/FitnessJournalApp/">
