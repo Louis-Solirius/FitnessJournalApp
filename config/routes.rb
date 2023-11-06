@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'search', to: "search#index"
+  
   resources :body_weights do
     collection do
       get 'remove_all'
@@ -26,5 +27,5 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "workouts#index"
-  
+
 end 
