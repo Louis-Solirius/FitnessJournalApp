@@ -1,6 +1,7 @@
 databases:
   - name: postgres
     ipAllowList: []
+    region: frankfurt
 
 services:
   - type: web
@@ -8,6 +9,7 @@ services:
     runtime: ruby
     buildCommand: "./bin/render-build.sh"
     startCommand: "bundle exec puma -C config/puma.rb"
+    region: frankfurt
     envVars:
       - key: DATABASE_URL
         fromDatabase:
